@@ -90,10 +90,13 @@ function resize(pathToFile) {
 
 log("Watch started");
 let resizeWatcher = chokidar.watch(dirToWatch, {
-    ignored: /[\/\\]\./, persistent: true,
+    ignored: /[\/\\]\./,
+    persistent: true,
     awaitWriteFinish: true,
-    ignored: '*.db',
-    usePolling: true
+    ignoreInitial: true,
+    usePolling: true,
+    interval: 200,
+    depth: 0
 });
 
 function convertTimerTask() {
